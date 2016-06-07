@@ -8,7 +8,8 @@ test:
     - ./gradlew clean test
   post:
     - ./gradlew cobertura coveralls
-    - if [[ ! -z $CI_PULL_REQUEST ]] ; then ./gradlew assembleDebug crashlyticsUploadDistributionDebug ; fi
+    - if [ ! -z $CI_PULL_REQUEST ] ; then ./gradlew assembleDebug crashlyticsUploadDistributionDebug ; fi
+    - ./gradlew createJar
 
 deployment:
   staging:

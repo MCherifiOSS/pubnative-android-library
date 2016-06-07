@@ -1,7 +1,6 @@
 package net.pubnative.library.banner;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
@@ -15,7 +14,6 @@ import org.robolectric.annotation.Config;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
