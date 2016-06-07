@@ -103,6 +103,8 @@ public class PubnativeInterstitial implements PubnativeRequest.Listener,
 
     /**
      * Starts loading an ad for this interstitial
+     * @param context valid Context
+     * @param appToken valid App token where to request the ad from
      */
     public void load(Context context, String appToken) {
 

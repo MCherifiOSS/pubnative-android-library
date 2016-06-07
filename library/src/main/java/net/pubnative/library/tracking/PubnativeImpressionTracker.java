@@ -124,6 +124,8 @@ public class PubnativeImpressionTracker {
 
     /**
      * This method starts tracking of the configured view
+     * @param view valid view for tracking
+     * @param listener valid listener for getting callbacks about the behaviour
      */
     public void startTracking(View view, Listener listener) {
 
