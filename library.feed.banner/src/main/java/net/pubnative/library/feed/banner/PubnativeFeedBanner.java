@@ -145,7 +145,7 @@ public class PubnativeFeedBanner implements PubnativeRequest.Listener,
 
     /**
      * Checks whether ad has been retrieved
-     * @return true if retrieved & not shown otherwise false
+     * @return true if retrieved and not shown otherwise false
      */
     public boolean isReady() {
 

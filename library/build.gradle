@@ -110,6 +110,20 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
+task deleteJar(type: Delete) {
+    delete '../libs/library.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('../libs/')
+    include('classes.jar')
+    rename('classes.jar', 'library.jar')
+}
+
+createJar.dependsOn(deleteJar, build)
+
 artifacts {
     archives javadocJar
     archives sourcesJar

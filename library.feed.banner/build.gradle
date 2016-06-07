@@ -114,6 +114,20 @@ artifacts {
     archives javadocJar
     archives sourcesJar
 }
+
+task deleteJar(type: Delete) {
+    delete '../libs/library_in_feed_banner.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('../libs/')
+    include('classes.jar')
+    rename('classes.jar', 'library_in_feed_banner.jar')
+}
+
+createJar.dependsOn(deleteJar, build)
+
 bintray {
     user = System.getenv("BINTRAY_USER")
     key = System.getenv("BINTRAY_API_KEY")
