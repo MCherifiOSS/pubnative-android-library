@@ -8,8 +8,8 @@ test:
     - ./gradlew clean test
   post:
     - ./gradlew cobertura coveralls
-    - if [[ ! -z $CI_PULL_REQUEST ]] ; then ./gradlew assembleDebug crashlyticsUploadDistributionDebug ; fi
-    - if [[ ! -z "$CIRCLE_BRANCH" ] && [ "$CIRCLE_BRANCH" == "master" ]] ; then ./gradlew createJar ; mv libs/*.jar $CIRCLE_ARTIFACTS ; fi
+    - if [ ! -z $CI_PULL_REQUEST ] ; then ./gradlew assembleDebug crashlyticsUploadDistributionDebug ; fi
+    - if [ ! -z "$CIRCLE_BRANCH" ] && [ "$CIRCLE_BRANCH" == "master" ]; then ./gradlew createJar ; mv libs/*.jar $CIRCLE_ARTIFACTS ; fi
 
 deployment:
   staging:
