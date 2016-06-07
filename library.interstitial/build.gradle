@@ -117,14 +117,14 @@ artifacts {
 }
 
 task deleteJar(type: Delete) {
-    delete '../libs/library_interstitial.jar'
+    delete "../libs/${project.name}_${version}.jar"
 }
 
 task createJar(type: Copy) {
     from('build/intermediates/bundles/release/')
     into('../libs/')
     include('classes.jar')
-    rename('classes.jar', 'library_interstitial.jar')
+    rename('classes.jar', "${project.name}_${version}.jar")
 }
 
 createJar.dependsOn(deleteJar, build)

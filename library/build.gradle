@@ -112,14 +112,14 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 task deleteJar(type: Delete) {
-    delete '../libs/library.jar'
+    delete "../libs/${project.name}_${version}.jar"
 }
 
 task createJar(type: Copy) {
     from('build/intermediates/bundles/release/')
     into('../libs/')
     include('classes.jar')
-    rename('classes.jar', 'library.jar')
+    rename('classes.jar', "${project.name}_${version}.jar")
 }
 
 createJar.dependsOn(deleteJar, build)
