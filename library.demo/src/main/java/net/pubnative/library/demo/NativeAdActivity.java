@@ -116,18 +116,18 @@ public class NativeAdActivity extends Activity implements PubnativeRequest.Liste
             Picasso.with(this).load(mCurrentAd.getBannerUrl()).into(mBanner);
             Log.v(TAG, "CUSTOM SPINNER " + mCustomLoaderEnabled.isChecked());
             mCurrentAd.startTracking(mAdContainer, this);
-
+            mAdContainer.setVisibility(View.VISIBLE);
         } else {
-            Toast.makeText(this, "ERROR: no - fill", Toast.LENGTH_SHORT);
+            mAdContainer.setVisibility(View.GONE);
+            Toast.makeText(this, "ERROR: no - fill", Toast.LENGTH_SHORT).show();
         }
-        mAdContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onPubnativeRequestFailed(PubnativeRequest request, Exception ex) {
 
         Log.v(TAG, "onPubnativeRequestFailed: " + ex);
-        Toast.makeText(this, "ERROR: " + ex, Toast.LENGTH_SHORT);
+        Toast.makeText(this, "ERROR: " + ex, Toast.LENGTH_SHORT).show();
     }
 
     // PubnativeAdModel.Listener
