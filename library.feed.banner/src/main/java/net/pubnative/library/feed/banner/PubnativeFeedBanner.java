@@ -199,6 +199,7 @@ public class PubnativeFeedBanner implements PubnativeRequest.Listener,
 
         Log.v(TAG, "hide");
         if(mIsShown && mInFeedBannerView.getParent() != null) {
+            mAdModel.stopTracking();
             ((ViewGroup)mInFeedBannerView.getParent()).removeAllViews();
         }
     }

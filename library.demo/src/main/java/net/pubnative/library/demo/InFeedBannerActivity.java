@@ -16,6 +16,8 @@ public class InFeedBannerActivity extends Activity implements PubnativeFeedBanne
     private RelativeLayout mLoaderContainer;
     private RelativeLayout mFeedBannerContainer;
 
+    private PubnativeFeedBanner mFeedBanner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -30,9 +32,12 @@ public class InFeedBannerActivity extends Activity implements PubnativeFeedBanne
 
         Log.v(TAG, "onRequestClick");
         mLoaderContainer.setVisibility(View.VISIBLE);
-        PubnativeFeedBanner feedBanner = new PubnativeFeedBanner();
-        feedBanner.setListener(this);
-        feedBanner.load(this, Settings.getAppToken());
+        if(mFeedBanner != null) {
+            mFeedBanner.destroy();
+        }
+        mFeedBanner = new PubnativeFeedBanner();
+        mFeedBanner.setListener(this);
+        mFeedBanner.load(this, Settings.getAppToken());
     }
 
     //==============================================================================================
@@ -44,8 +49,10 @@ public class InFeedBannerActivity extends Activity implements PubnativeFeedBanne
     @Override
     public void onPubnativeFeedBannerLoadFinish(PubnativeFeedBanner feedBanner) {
         Log.v(TAG, "onPubnativeFeedBannerLoadFinish");
-        feedBanner.show(mFeedBannerContainer);
-        mLoaderContainer.setVisibility(View.GONE);
+        if(mFeedBanner == feedBanner) {
+            feedBanner.show(mFeedBannerContainer);
+            mLoaderContainer.setVisibility(View.GONE);
+        }
     }
 
     @Override
