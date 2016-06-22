@@ -140,14 +140,12 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
     public void load(Context context, String appToken) {
 
         Log.v(TAG, "load");
-
         if (mHandler == null) {
             mHandler = new Handler(Looper.getMainLooper());
         }
         if (mListener == null) {
-            Log.v(TAG, "load - The ad hasn't a listener");
+            Log.w(TAG, "load - The ad hasn't a listener");
         }
-
         if (TextUtils.isEmpty(appToken)) {
             invokeLoadFail(new Exception("PubnativeVideo - load error: app token is null or empty"));
         } else if (context == null) {
@@ -164,7 +162,7 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
             initialize();
             PubnativeRequest request = new PubnativeRequest();
             request.setParameter(PubnativeRequest.Parameters.APP_TOKEN, mAppToken);
-            String[] assets = new String[] {
+            String[] assets = new String[] { //TODO this array must be changed according to VAST
                     PubnativeAsset.TITLE,
                     PubnativeAsset.DESCRIPTION/*,
                     PubnativeAsset.VAST*/
@@ -236,7 +234,7 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
 
             @Override
             public void onVASTParserFinished(VASTModel model) {
-
+                //TODO this needs to be modified after correct server response
                 Log.v(TAG, "onVASTParserFinished");
                 mVASTPlayer.setCampaignType(VASTPlayer.CampaignType.CPC);
                 mVASTPlayer.setSkipName("Skip");
