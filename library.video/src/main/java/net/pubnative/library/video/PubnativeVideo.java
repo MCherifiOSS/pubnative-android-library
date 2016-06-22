@@ -200,10 +200,10 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
         }
     }
 
-    //==============================================================================================
-    // Helpers
-    //==============================================================================================
-    protected void hide() {
+    /**
+     * Hides video ad
+     */
+    public void hide() {
 
         Log.v(TAG, "hide");
         if (mIsShown) {
@@ -214,6 +214,9 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
         }
     }
 
+    //==============================================================================================
+    // Helpers
+    //==============================================================================================
     protected void render() {
 
         Log.v(TAG, "render");
