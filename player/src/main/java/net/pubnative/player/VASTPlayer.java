@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 import net.pubnative.player.model.TRACKING_EVENTS_TYPE;
 import net.pubnative.player.model.VASTModel;
-import net.pubnative.player.util.BitmapDownloaderTask;
 import net.pubnative.player.util.HttpTools;
 import net.pubnative.player.util.VASTLog;
 import net.pubnative.player.widget.CountDownView;
@@ -289,7 +288,7 @@ public class VASTPlayer extends RelativeLayout implements MediaPlayer.OnCompleti
      * Sets the campaign type of the player so it will affect
      * the next load of the player. (whichs sets up the layout for the loaded model).
      *
-     * @param campaignType
+     * @param campaignType campign type
      */
     public void setCampaignType(CampaignType campaignType) {
 
@@ -311,7 +310,7 @@ public class VASTPlayer extends RelativeLayout implements MediaPlayer.OnCompleti
     /**
      * Sets skip string to be shown in the skip button
      *
-     * @param skipName
+     * @param skipName skip label
      */
     public void setSkipName(String skipName) {
 
@@ -322,7 +321,7 @@ public class VASTPlayer extends RelativeLayout implements MediaPlayer.OnCompleti
     /**
      * Sets the amount of time that has to be played to be able to skip the video
      *
-     * @param skipTime
+     * @param skipTime skip time
      */
     public void setSkipTime(int skipTime) {
 
@@ -376,6 +375,14 @@ public class VASTPlayer extends RelativeLayout implements MediaPlayer.OnCompleti
         VASTLog.v(TAG, "clean");
 
         setState(PlayerState.None);
+    }
+
+    /**
+     * sets the banner that would be displayed after video
+     * @param bitmap valid bitmap
+     */
+    public void setBannerImage(Bitmap bitmap) {
+        mPlayerBannerImage.setImageBitmap(bitmap);
     }
 
     //=======================================================
@@ -1030,29 +1037,9 @@ public class VASTPlayer extends RelativeLayout implements MediaPlayer.OnCompleti
     public void onPrepared(MediaPlayer mp) {
 
         VASTLog.v(TAG, "onPrepared --(MediaPlayer callback) ....about to play");
-
-        final String bannerURLString = mVastModel.getExtensionURL(VASTModel.EXTENSION_POSTVIEW_BANNER);
-
-        new BitmapDownloaderTask().setListener(new BitmapDownloaderTask.Listener() {
-
-            @Override
-            public void onBitmapDownloaderFinished(Bitmap bitmap) {
-
-                if (bitmap != null) {
-
-                    mPlayerBannerImage.setImageBitmap(bitmap);
-                    mIsPlayerReady = true;
-                    setState(PlayerState.Ready);
-                    invokeOnPlayerLoadFinish();
-
-                } else {
-
-                    invokeOnFail(new Exception("VASTPlayer error: Background banner couldn't be downloaded: " + bannerURLString));
-                    setState(PlayerState.None);
-                }
-
-            }
-        }).execute(bannerURLString);
+        mIsPlayerReady = true;
+        setState(PlayerState.Ready);
+        invokeOnPlayerLoadFinish();
     }
 
     // MediaPlayer.OnVideoSizeChangedListener
