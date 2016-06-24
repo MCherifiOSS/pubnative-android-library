@@ -24,7 +24,8 @@
         <activity android:name=".InterstitialAdActivity" />
         <activity android:name=".BannerActivity" />
         <activity android:name=".InFeedBannerActivity" />
-        <activity android:name=".VideoAdActivity" />
+        <activity android:name=".VideoAdActivity"
+            android:configChanges="orientation"/>
     </application>
 
 </manifest>
