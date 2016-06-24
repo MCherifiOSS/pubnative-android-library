@@ -156,8 +156,8 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
         }
         if (TextUtils.isEmpty(appToken)) {
             invokeLoadFail(new Exception("PubnativeVideo - load error: app token is null or empty"));
-        } else if (context == null) {
-            invokeLoadFail(new Exception("PubnativeVideo - load error: context is null or empty"));
+        } else if (context == null || !(context instanceof Activity)) {
+            invokeLoadFail(new Exception("PubnativeVideo - load error: context is null or non activity context"));
         } else if (mIsLoading) {
             Log.w(TAG, "load - The ad is loaded or being loaded, dropping this call");
         } else if (isReady()) {
