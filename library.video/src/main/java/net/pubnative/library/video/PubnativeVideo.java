@@ -23,7 +23,9 @@
 
 package net.pubnative.library.video;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -215,6 +217,7 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
             mWindowManager.removeView(mContainer);
             mIsShown = false;
             mVASTPlayer.clean();
+            ((Activity)mContext).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
             invokeHide();
         }
     }
@@ -263,6 +266,7 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
                 params.width = WindowManager.LayoutParams.MATCH_PARENT;
                 params.height = WindowManager.LayoutParams.MATCH_PARENT;
                 mWindowManager.addView(mContainer, params);
+                ((Activity)mContext).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 mIsShown = true;
             }
 
