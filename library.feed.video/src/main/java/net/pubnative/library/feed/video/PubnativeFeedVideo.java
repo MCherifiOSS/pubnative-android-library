@@ -210,6 +210,7 @@ public class PubnativeFeedVideo implements PubnativeRequest.Listener,
         if (mIsShown) {
             mIsShown = false;
             mVASTPlayer.clean();
+            mContainer.removeView(mFeedVideo);
             invokeHide();
         }
     }

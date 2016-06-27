@@ -34,6 +34,9 @@ public class FeedVideoActivity extends Activity implements PubnativeFeedVideo.Li
 
         Log.v(TAG, "onRequestClick");
         mLoaderContainer.setVisibility(View.VISIBLE);
+        if(mFeedVideo != null) {
+            mFeedVideo.hide();
+        }
         mFeedVideo = new PubnativeFeedVideo();
         mFeedVideo.setListener(this);
         mFeedVideo.load(this, Settings.getAppToken());
