@@ -231,11 +231,8 @@ public class PubnativeFeedVideo implements PubnativeRequest.Listener,
 
             @Override
             public void onVASTParserFinished(VASTModel model) {
-                //TODO this needs to be modified after correct server response
+
                 Log.v(TAG, "onVASTParserFinished");
-                mVASTPlayer.setCampaignType(VASTPlayer.CampaignType.CPC);
-                mVASTPlayer.setSkipName("Skip");
-                mVASTPlayer.setSkipTime(5);
                 Picasso.with(mContext).load(mAdModel.getBannerUrl()).into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
