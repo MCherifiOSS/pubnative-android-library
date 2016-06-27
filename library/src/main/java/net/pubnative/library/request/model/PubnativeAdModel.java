@@ -243,7 +243,7 @@ public class PubnativeAdModel implements PubnativeImpressionTracker.Listener,
         String result = null;
         PubnativeAPIV3DataModel data = getAsset(PubnativeAsset.VAST);
         if (data != null) {
-            result = data.getStringField("tag");
+            result = data.getStringField("vast2");
         }
         return result;
     }

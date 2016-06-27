@@ -55,7 +55,6 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
                                         VASTPlayer.Listener {
 
     private static final String TAG = PubnativeVideo.class.getSimpleName();
-    private final static String VIDEO_STATIC = "<VAST version=\"2.0\"><Ad id=\"3295422\"><InLine><AdTitle>UC Browser for Android</AdTitle><Description>Searching, Browsing, Downloading, Video, Gaming, Shopping and Social Sharing experience - get it now!</Description><AdSystem version=\"1\">PubNative</AdSystem><Impression>http://tr.pubnative.net/impression?aid=4&amp;t=KOvJvnhz15cd5PH0h0O2FncynlRwDjwlqWwIHaOBrq2SRX5AOQgY7YituLubawk1xK24Hb9ezCXDYryRaHFQfPd_GKm4VGnTKSipeli3KXRwoxmKzmrKpyBYSvA6393NVZHhdfgK1zf4yaR5Xx-6CG2JGEFErLE8UhLdSQAyc3-r29we5FVn1KJ1I22aiVkk6uWuFXW6cTDzTleFhLdhoyvyVD1LkmlgxesgjE1l5H1Hyv-JbFYToYxP7NcIJjDXYYi2_xOwMprXrH6Tl4j2KGTmTkDikHNKuiuV8imocl5UzuneEPmr9cuKGxF0Cze8YWJtPp14fycltRhISvNQ</Impression><Creatives><Creative sequence=\"1\"><Linear><Duration></Duration><VideoClicks><ClickThrough>http://tr.pubnative.net/click/native?aid=4&amp;t=4_g5FZRpf-Vid0u-47zNXWFQUIQcrEpPsCdScUjtFX5bafoKg8kqoaXmKX_PNfQFXenanHoClQ-MXjL7Em9amEx0SVPmXwV2apg7rGiUBwCywpRPvLKBzovhygB24ADXNxINjI-i-4uy0SrllOyrV-v7NRu1QBsHYHDW65RUiwCryYD3pY8yWsrmpU_uMuk2h9lT5h87r-5B3hSJzQT066eyX5vmfHzTrm2XD2Xtm_eduNpre4uWvIu5vO6rxP0PRsDWjXEh0wwsSAFWMDPettyp_-UyMP0deacNLTKfDjO7y3eyEF0D4RV9QvpM2r-yE3qzQzHNWNdTW9_gTivkegbaJSJItSGJTikW57g8lLs53T2drp5NmbAFcx6lo0tsH83RXjD4Rp3V3J180G3g4dY5ECThw0Jfja4i5o_55xmNagTV2YYCzvmoppy0ijNYeEFoyHpIFVCvnNKpVBoIbOimbFo2ePoa0DOH3V6tIu0BX_AWI0vYK5hi-Q70YP_40xoBeH8w45XiJeE4CA2zDZiTg0JaJOhlIqDcBA</ClickThrough></VideoClicks><MediaFiles><MediaFile delivery=\"progressive\" type=\"video/mp4\" width=\"0\" height=\"0\">http://cdn.pubnative.net/games/videos/1003679/en.mp4</MediaFile></MediaFiles></Linear></Creative></Creatives></InLine></Ad></VAST>";
 
     //==============================================================================================
     // Properties
@@ -170,11 +169,9 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
             initialize();
             PubnativeRequest request = new PubnativeRequest();
             request.setParameter(PubnativeRequest.Parameters.APP_TOKEN, mAppToken);
-            String[] assets = new String[] { //TODO this array must be changed according to VAST
-                    PubnativeAsset.TITLE,
-                    PubnativeAsset.DESCRIPTION,
-                    PubnativeAsset.BANNER/*,
-                    PubnativeAsset.VAST*/
+            String[] assets = new String[] {
+                    PubnativeAsset.BANNER,
+                    PubnativeAsset.VAST
             };
             request.setParameterArray(PubnativeRequest.Parameters.ASSET_FIELDS, assets);
             request.start(mContext, this);
@@ -266,11 +263,11 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
                 params.width = WindowManager.LayoutParams.MATCH_PARENT;
                 params.height = WindowManager.LayoutParams.MATCH_PARENT;
                 mWindowManager.addView(mContainer, params);
-                ((Activity)mContext).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                ((Activity) mContext).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 mIsShown = true;
             }
 
-        }).execute(VIDEO_STATIC);
+        }).execute(mAdModel.getVast());
     }
 
     protected void initialize() {
