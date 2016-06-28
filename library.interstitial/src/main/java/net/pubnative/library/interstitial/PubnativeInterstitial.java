@@ -321,11 +321,28 @@ public class PubnativeInterstitial implements PubnativeRequest.Listener,
             invokeLoadFail(new Exception("PubnativeInterstitial - load error: error loading resources"));
         } else {
             mAdModel = ads.get(0);
-            Picasso.with(mContext).load(mAdModel.getIconUrl()).fetch(new Callback() {
+            Picasso.with(mContext)
+                    .load(mAdModel.getBannerUrl())
+                    .fetch(new Callback() {
 
                 @Override
                 public void onSuccess() {
-                    invokeLoadFinish();
+
+                    Picasso.with(mContext)
+                            .load(mAdModel.getIconUrl())
+                            .fetch(new Callback() {
+
+                                      @Override
+                                      public void onSuccess () {
+                                          invokeLoadFinish();
+                                      }
+
+                                      @Override
+                                      public void onError () {
+                                          invokeLoadFail(new Exception("PubnativeInterstitial - preload banner error: can't load banner"));
+                                      }
+                                  });
+
                 }
 
                 @Override
