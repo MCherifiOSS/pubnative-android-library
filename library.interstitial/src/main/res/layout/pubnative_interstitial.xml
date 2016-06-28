@@ -27,11 +27,22 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
 
+    <TextView
+        android:id="@+id/pubnative_interstitial_description"
+        style="@style/pubnative_interstitial_DailyInfoBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_above="@+id/pubnative_interstitial_cta"
+        android:layout_alignLeft="@+id/pubnative_interstitial_data"
+        android:layout_alignRight="@+id/pubnative_interstitial_data"
+        android:layout_marginBottom="10dp" />
+
     <RelativeLayout
         android:id="@+id/pubnative_interstitial_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/pubnative_interstitial_cta"
+        android:layout_above="@+id/pubnative_interstitial_description"
         android:layout_margin="10dp">
 
         <ImageView
@@ -51,7 +62,6 @@
             style="@android:style/TextAppearance.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/pubnative_interstitial_rating"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@id/pn_interstitial_icon"
             android:layout_toRightOf="@id/pn_interstitial_icon"
@@ -65,20 +75,12 @@
             style="@style/ratingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/pubnative_interstitial_title"
             android:layout_alignBottom="@id/pn_interstitial_icon"
             android:layout_marginBottom="5dp"
             android:layout_toRightOf="@id/pn_interstitial_icon"
             android:isIndicator="true"/>
 
-        <TextView
-            android:id="@+id/pubnative_interstitial_description"
-            style="@style/pubnative_interstitial_DailyInfoBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="false"
-            android:layout_below="@id/pn_interstitial_icon"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"/>
     </RelativeLayout>
 
     <ImageView
