@@ -158,7 +158,7 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
         } else if (context == null || !(context instanceof Activity)) {
             invokeLoadFail(new Exception("PubnativeVideo - load error: context is null or non activity context"));
         } else if (mIsLoading) {
-            Log.w(TAG, "load - The ad is loaded or being loaded, dropping this call");
+            Log.w(TAG, "load - The ad is being loaded, dropping this call");
         } else if (isReady()) {
             invokeLoadFinish();
         } else {
@@ -195,8 +195,10 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
     public void show() {
 
         Log.v(TAG, "show");
-        if (mIsShown) {
-            Log.w(TAG, "show - the ad is already shown, ");
+        if (mIsLoading) {
+            Log.w(TAG, "show - the ad is still loading, dropping the call");
+        } else if (mIsShown) {
+            Log.w(TAG, "show - the ad is already shown, dropping the call");
         } else if (isReady()) {
             render();
         } else {
@@ -305,6 +307,7 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
     protected void invokeLoadFinish() {
 
         Log.v(TAG, "invokeLoadFinish");
+        mIsLoading = false;
         mHandler.post(new Runnable() {
 
             @Override
@@ -320,6 +323,7 @@ public class PubnativeVideo implements PubnativeRequest.Listener,
     protected void invokeLoadFail(final Exception exception) {
 
         Log.v(TAG, "invokeLoadFail", exception);
+        mIsLoading = false;
         mHandler.post(new Runnable() {
 
             @Override

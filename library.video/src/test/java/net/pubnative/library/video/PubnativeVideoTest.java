@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
         sdk = 21)
 public class PubnativeVideoTest {
     @Test
-    public void load_withNullContext_pass() {
+    public void load_withNullContext_shouldCallbackFail() {
 
         PubnativeVideo video = spy(PubnativeVideo.class);
         PubnativeVideo.Listener listener = mock(PubnativeVideo.Listener.class);
@@ -32,7 +32,7 @@ public class PubnativeVideoTest {
     }
 
     @Test
-    public void load_withInvalidAppToken_pass() {
+    public void load_withInvalidAppToken_shouldCallbackFail() {
 
         PubnativeVideo video = spy(PubnativeVideo.class);
         PubnativeVideo.Listener listener = mock(PubnativeVideo.Listener.class);
@@ -43,7 +43,7 @@ public class PubnativeVideoTest {
     }
 
     @Test
-    public void load_withNullAppToken_pass() {
+    public void load_withNullAppToken_shouldCallbackFail() {
 
         PubnativeVideo video = spy(PubnativeVideo.class);
         PubnativeVideo.Listener listener = mock(PubnativeVideo.Listener.class);
@@ -54,7 +54,7 @@ public class PubnativeVideoTest {
     }
 
     @Test
-    public void onPubnativeRequestSuccess_withoutAds_invokesLoadFail() {
+    public void onPubnativeRequestSuccess_withoutAds_shouldCallbackFail() {
 
         PubnativeVideo video = spy(PubnativeVideo.class);
         video.mHandler = new Handler();
@@ -66,7 +66,7 @@ public class PubnativeVideoTest {
     }
 
     @Test
-    public void onPubnativeRequestFailed_invokesLoadFailed() {
+    public void onPubnativeRequestFailed_shouldCallbackFail() {
 
         PubnativeVideo video = spy(PubnativeVideo.class);
         video.mHandler = new Handler();
@@ -78,14 +78,14 @@ public class PubnativeVideoTest {
     }
 
     @Test
-    public void invokeLoadFail_withNullListener_shouldPass() {
+    public void invokeLoadFail_withoutListener_shouldPass() {
         PubnativeVideo video = spy(PubnativeVideo.class);
         video.mHandler = new Handler();
         video.invokeLoadFail(mock(Exception.class));
     }
 
     @Test
-    public void invokeLoadFail_withValidListener_invokesLoadFailed() {
+    public void invokeLoadFail_withValidListener_shouldCallbackFail() {
         PubnativeVideo video = spy(PubnativeVideo.class);
         video.mHandler = new Handler();
         PubnativeVideo.Listener listener = mock(PubnativeVideo.Listener.class);
@@ -104,7 +104,7 @@ public class PubnativeVideoTest {
     }
 
     @Test
-    public void invokeLoadFinish_withValidListener_invokesLoadFinish() {
+    public void invokeLoadFinish_withValidListener_shouldCallbackFinish() {
         PubnativeVideo video = spy(PubnativeVideo.class);
         video.mHandler = new Handler();
         PubnativeVideo.Listener listener = mock(PubnativeVideo.Listener.class);
@@ -123,7 +123,7 @@ public class PubnativeVideoTest {
     }
 
     @Test
-    public void invokeShow_withValidListener_invokesShow() {
+    public void invokeShow_withValidListener_shouldCallbackShow() {
 
         PubnativeVideo video = spy(PubnativeVideo.class);
         PubnativeVideo.Listener listener = mock(PubnativeVideo.Listener.class);
@@ -143,7 +143,7 @@ public class PubnativeVideoTest {
     }
 
     @Test
-    public void invokeClick_withValidListener_invokesClick() {
+    public void invokeClick_withValidListener_shouldCallbackClick() {
 
         PubnativeVideo video = spy(PubnativeVideo.class);
         PubnativeVideo.Listener listener = mock(PubnativeVideo.Listener.class);
